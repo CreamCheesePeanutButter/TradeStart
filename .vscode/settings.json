@@ -1,0 +1,19 @@
+{
+  "sqltools.connections": [
+    {
+      "mysqlOptions": {
+        "authProtocol": "default",
+        "enableSsl": "Disabled"
+      },
+      "ssh": "Disabled",
+      "previewLimit": 50,
+      "server": "mysql-creamcheesepeanutbutter.alwaysdata.net",
+      "port": 3306,
+      "driver": "MySQL",
+      "name": "mysql-creamcheesepeanutbutter.alwaysdata.net",
+      "database": "creamcheesepeanutbutter_users",
+      "username": "creamcheesepeanutbutter",
+      "askForPassword": true
+    }
+  ]
+}

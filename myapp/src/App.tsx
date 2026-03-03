@@ -4,8 +4,9 @@ import {
   createRoutesFromElements,
   RouterProvider,
 } from "react-router-dom";
+
 import RootLayout from "./layout/rootlayout";
-import Homepage from "./pages/homepage";
+import Homepage from "./pages/homepage.tsx";
 function App() {
   const router = createHashRouter(
     createRoutesFromElements(

@@ -11,7 +11,8 @@
     "start": "powershell.exe -NoProfile -ExecutionPolicy Unrestricted -Command \"./run.ps1\"",
     "start-backend": "cd backend && .\\venv\\Scripts\\python api.py",
     "start-backend-unix": "cd backend && ./venv/bin/python api.py",
-    "set-up-backend": "cd backend &&python3 -m venv venv && .venv\\Scripts\\activate && pip install flask && pip install flask_cors && pip install mysql.connector"
+    "setup-backend": "cd backend && python -m venv venv && venv\\Scripts\\activate && pip install flask flask_cors mysql-connector-python",
+    "setup-backend-mac": "cd backend && python3 -m venv venv && source venv/bin/activate && pip install flask flask_cors mysql-connector-python"
   },
   "dependencies": {
     "react": "^19.2.0",
