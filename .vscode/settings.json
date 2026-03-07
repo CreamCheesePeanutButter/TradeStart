@@ -15,5 +15,6 @@
       "username": "creamcheesepeanutbutter",
       "askForPassword": true
     }
-  ]
+  ],
+  "python.REPL.enableREPLSmartSend": false
 }
