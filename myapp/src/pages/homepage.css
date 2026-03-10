@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap');
+
+:root {
+  --xbox-green: #107C10;
+  --xbox-green-bright: #52B043;
+  --xbox-green-glow: rgba(16, 124, 16, 0.35);
+  --bg-dark: #0a0a0a;
+  --bg-card: #111111;
+  --bg-input: #1a1a1a;
+  --border: #2a2a2a;
+  --text-primary: #f0f0f0;
+  --text-secondary: #888888;
+  --text-label: #52B043;
+  --error: #e05252;
+}
+
+.hw-page {
+  min-height: 100vh;
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  font-family: 'Rajdhani', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.bg-grid {
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(16, 124, 16, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(16, 124, 16, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hw-content {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 48px 24px 64px;
+}
+
+.hw-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 28px;
+  letter-spacing: 0.2em;
+  color: var(--text-primary);
+  margin-bottom: 28px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+
+.hw-title::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 80px;
+  height: 2px;
+  background: var(--xbox-green-bright);
+}
+
+.hw-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+}
+
+.hw-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.hw-table thead tr {
+  background: #161616;
+  border-bottom: 1px solid var(--border);
+}
+
+.hw-table th {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--text-label);
+  padding: 14px 18px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.hw-table tbody tr {
+  border-bottom: 1px solid #1a1a1a;
+  transition: background 0.15s;
+}
+
+.hw-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.hw-table tbody tr:hover {
+  background: rgba(16, 124, 16, 0.06);
+}
+
+.hw-table td {
+  padding: 14px 18px;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.hw-ticker {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 14px;
+  color: var(--xbox-green-bright) !important;
+  letter-spacing: 0.08em;
+}
+
+.hw-price {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.hw-high {
+  color: #52B043 !important;
+}
+
+.hw-low {
+  color: #e05252 !important;
+}
+
+.hw-state {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 14px;
+  color: var(--text-secondary);
+  background: var(--bg-dark);
+  letter-spacing: 0.08em;
+}
+
+.hw-error {
+  color: var(--error);
+}
