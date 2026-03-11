@@ -1,0 +1,34 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36" version="29.6.1">
+  <diagram name="Page-1" id="418KTHB9KU1rXoP4GZRT">
+    <mxGraphModel dx="749" dy="537" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="XIZBhQ73kKx_8eXQ3dgm-1" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fontSize=14;" value="Trade Table" vertex="1">
+          <mxGeometry height="110" width="170" x="450" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="XIZBhQ73kKx_8eXQ3dgm-2" parent="XIZBhQ73kKx_8eXQ3dgm-1" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;whiteSpace=wrap;html=1;" value="tradeID&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;int&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;PK&lt;div&gt;userID&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;int&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;FK&lt;/div&gt;&lt;div&gt;stock_symbol&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;varchar&lt;/div&gt;&lt;div&gt;date_bought&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;date&lt;/div&gt;&lt;div&gt;number_of_shares&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&amp;nbsp;double&lt;/div&gt;" vertex="1">
+          <mxGeometry height="84" width="170" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="XIZBhQ73kKx_8eXQ3dgm-5" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fontSize=14;" value="Users" vertex="1">
+          <mxGeometry height="150" width="170" x="190" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="XIZBhQ73kKx_8eXQ3dgm-6" parent="XIZBhQ73kKx_8eXQ3dgm-5" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;userID&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;int&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;/span&gt;PK&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;div&gt;username &lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;varchar&lt;/div&gt;&lt;div&gt;password &lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;varchar&lt;/div&gt;&lt;div&gt;email &lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;varchar&lt;/div&gt;&lt;div&gt;first_name &lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;varchar&lt;/div&gt;&lt;div&gt;last_name&amp;nbsp;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;varchar&lt;/div&gt;&lt;div&gt;admin_access&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;boolean&lt;/div&gt;&lt;div&gt;available_funds&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;double&lt;/div&gt;" vertex="1">
+          <mxGeometry height="124" width="170" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="XIZBhQ73kKx_8eXQ3dgm-8" edge="1" parent="1" style="edgeStyle=entityRelationEdgeStyle;fontSize=12;html=1;endArrow=ERzeroToMany;endFill=1;rounded=0;entryX=-0.031;entryY=0.39;entryDx=0;entryDy=0;entryPerimeter=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" value="">
+          <mxGeometry height="100" relative="1" width="100" as="geometry">
+            <mxPoint x="365.27" y="108" as="sourcePoint" />
+            <mxPoint x="450" y="278.76" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XIZBhQ73kKx_8eXQ3dgm-10" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fontSize=14;" value="stock" vertex="1">
+          <mxGeometry height="130" width="170" x="200" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="XIZBhQ73kKx_8eXQ3dgm-11" parent="XIZBhQ73kKx_8eXQ3dgm-10" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;whiteSpace=wrap;html=1;" value="stock_key&amp;nbsp;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;varchar&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;PK&lt;div&gt;current_price&amp;nbsp;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;decimal&amp;nbsp;&lt;/div&gt;&lt;div&gt;high_price&amp;nbsp;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;decimal&amp;nbsp;&lt;/div&gt;&lt;div&gt;low_price&amp;nbsp;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;decimal&amp;nbsp;&lt;/div&gt;&lt;div&gt;open_price&amp;nbsp;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;decimal&amp;nbsp;&lt;/div&gt;&lt;div&gt;previous_close decimal&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="104" width="170" y="26" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
