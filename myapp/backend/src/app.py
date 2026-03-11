@@ -3,6 +3,7 @@ from flask_cors import CORS
 from db import close_db
 from routes.login_api import login_bp
 from routes.stock_api import stock_bp
+from routes.signup_api import signup_bp
 from const import const
 
 app = Flask(__name__)
@@ -16,6 +17,7 @@ app.config["MYSQL_DB"] = const.DATABASE
 
 app.register_blueprint(login_bp)
 app.register_blueprint(stock_bp)
+app.register_blueprint(signup_bp)
 
 app.teardown_appcontext(close_db)
 

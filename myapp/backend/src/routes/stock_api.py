@@ -13,11 +13,11 @@ stock_bp = Blueprint('stock_api', __name__)
 
 class StockAPI(MethodView):
     # We need GET API for allowing the frontend to get the stock data
+    stock_tracker = StockTracker()
     def get(self):
         # For now we just return the data in the stock tracker
         # In the future we can add more features like adding new stocks to track, etc.
         # update stock data to the SQL database
-        stock_tracker = StockTracker()
 
         db = get_db()         # connection
         cursor = db.cursor()  # cursor object
@@ -25,7 +25,7 @@ class StockAPI(MethodView):
         cursor.execute("SELECT last_call FROM stock LIMIT 1")
         result = cursor.fetchone()
         if result is None or (result[0] is None) or (result[0] < (datetime.now() - timedelta(minutes=1))):
-            for ticker, stock in stock_tracker.stocks.items():
+            for ticker, stock in self.stock_tracker.stocks.items():
                 cursor.execute(
                     """
                     INSERT INTO stock (stock_key, current_price, high_price, low_price, open_price, previous_close)
@@ -48,7 +48,7 @@ class StockAPI(MethodView):
                 "low_today": stock.low_today,
                 "open_price": stock.open_price,
                 "previous_close": stock.previous_close
-            } for ticker, stock in stock_tracker.stocks.items()}
+            } for ticker, stock in self.stock_tracker.stocks.items()}
         })   
 
 user_view = StockAPI.as_view('user_api')
