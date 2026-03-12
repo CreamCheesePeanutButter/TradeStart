@@ -5,6 +5,7 @@ from routes.login_api import login_bp
 from routes.stock_api import stock_bp
 from routes.signup_api import signup_bp
 from const import const
+from routes.funds_api import funds_bp
 
 app = Flask(__name__)
 CORS(app) 
@@ -18,6 +19,7 @@ app.config["MYSQL_DB"] = const.DATABASE
 app.register_blueprint(login_bp)
 app.register_blueprint(stock_bp)
 app.register_blueprint(signup_bp)
+app.register_blueprint(funds_bp)
 
 app.teardown_appcontext(close_db)
 
