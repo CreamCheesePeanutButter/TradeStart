@@ -2,7 +2,9 @@
 
 ### How to set up the app
 
-First navigate to myapp folder
+First you need to have python3 and Node.js installed in your computer
+
+After make sure you have these application then navigate to myapp folder
 
 ```.ps1
 cd myapp
