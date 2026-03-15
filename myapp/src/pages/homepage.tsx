@@ -7,13 +7,19 @@ const fmt = (val: number | undefined) =>
   val != null ? `$${val.toFixed(2)}` : "—";
 
 const Homepage = () => {
-  const [stocks, setStocks] = useState<Record<string, {
-    current_price: number;
-    open_price: number;
-    high_today: number;
-    low_today: number;
-    previous_close: number;
-  }>>({});
+  const [stocks, setStocks] = useState<
+    Record<
+      string,
+      {
+        current_price: number;
+        open_price: number;
+        high_today: number;
+        low_today: number;
+        previous_close: number;
+      }
+    >
+  >({});
+  const [currency, setCurrency] = useState("USD");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -24,6 +30,7 @@ const Homepage = () => {
         if (!response.ok) throw new Error("Network response was not ok");
         const data = await response.json();
         setStocks(data.stocks);
+        setCurrency(data.currency);
       } catch (err) {
         setError(err instanceof Error ? err.message : "Unknown error");
       } finally {
@@ -42,6 +49,33 @@ const Homepage = () => {
       <div className="hw-content">
         <h2 className="hw-title">Market</h2>
         <div className="hw-table-wrap">
+          {/* added currency display. I havent create the css style for this yet */}
+          <text className="hw-currency">Currency: {currency}</text>
+          {/* create button */}
+          <button
+            className="hw-button"
+            onClick={() => {
+              // Implementation for changing currency
+              fetch(`${API_URL}/stocks/exchange`, {
+                method: "POST",
+              })
+                .then((res) => res.json())
+                .then((data) => {
+                  setCurrency(data.currency);
+                  // Optionally, you can also refetch the stock data here to update the prices
+                  return fetch(`${API_URL}/stocks`);
+                })
+                .then((res) => res.json())
+                .then((data) => setStocks(data.stocks))
+                .catch((err) =>
+                  setError(
+                    err instanceof Error ? err.message : "Unknown error",
+                  ),
+                );
+            }}
+          >
+            Change to {currency === "USD" ? "CAD" : "USD"}
+          </button>
           <table className="hw-table">
             <thead>
               <tr>

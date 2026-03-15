@@ -8,11 +8,15 @@ class Stock:
     open_price = 0
     previous_close = 0
     _ticker = ""
+    name = ""
+    currency = "USD"
 
     
     def __init__(self, ticker):
         self._ticker = ticker
         self.update()
+
+
     def update_name(self):
         url = f"https://finnhub.io/api/v1/stock/profile2?symbol={self._ticker}&token={API_KEY}"
         response = requests.get(url)
@@ -29,25 +33,54 @@ class Stock:
         self.open_price = data["o"]
         self.previous_close = data["pc"]
         self.update_name()
+        if self.currency != "USD":
+            self.exchange_to_currency()
+        else:
+            self.currency = "USD"
 
 
 class StockTracker:
     _stocks = {}
+    _currency = "USD"
     def __init__(self):
-        self.stocks = {
+        self._stocks = {
             "AAPL": Stock("AAPL"),
             "GOOGL": Stock("GOOGL"),
             "AMZN": Stock("AMZN")
         }
-        print("StockTracker initialized with stocks: ", list(self.stocks.keys()))
+        self._currency = "USD"
+    
+    def get_currency(self):
+        return self._currency
+    
+    def get_stocks(self):
+        return self._stocks
 
     def add_stock(self, ticker):
-        if ticker not in self.stocks:
-            self.stocks[ticker] = Stock(ticker)
+        if ticker not in self._stocks:
+            self._stocks[ticker] = Stock(ticker)
 
     def update_all(self):
-        for stock in self.stocks.values():
+        for stock in self._stocks.values():
             stock.update()
-    
+
+    def exchange_currency(self, currency):
+        url = f"https://open.er-api.com/v6/latest/{self._currency}"
+        data = requests.get(url).json()
+        rate = data["rates"][currency]
+
+        for stock in self._stocks.values():
+            stock.current_price *= rate
+            stock.high_today *= rate
+            stock.low_today *= rate
+            stock.open_price *= rate
+            stock.previous_close *= rate
+            stock.currency = currency
+
+        self._currency = currency
+        
+
+
+            
 
         

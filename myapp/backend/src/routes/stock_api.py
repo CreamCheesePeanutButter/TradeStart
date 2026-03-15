@@ -2,7 +2,6 @@
 
 # As you can see I copy the exact same lib for this 
 from datetime import datetime, timedelta
-
 from flask import request, Blueprint, jsonify
 from flask.views import MethodView
 from db import get_db
@@ -31,20 +30,20 @@ class StockAPI(MethodView):
             for ticker, stock in self.stock_tracker.stocks.items():
                 cursor.execute(
                     """
-                    INSERT INTO stock (stock_key, current_price, high_price, low_price, open_price, previous_close)
-                    VALUES (%s, %s, %s, %s, %s, %s)
+                    INSERT INTO stock (stock_key, current_price, high_price, low_price, open_price, previous_close, name, currency)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
                     ON DUPLICATE KEY UPDATE
                         current_price = VALUES(current_price),
                         high_price = VALUES(high_price),
                         low_price = VALUES(low_price),
                         open_price = VALUES(open_price),
-                        previous_close = VALUES(previous_close)
-                        name = VALUES(name)
+                        previous_close = VALUES(previous_close),
+                        name = VALUES(name),
+                        currency = VALUES(currency)
                     """,
-                    (ticker, stock.current_price, stock.high_today, stock.low_today, stock.open_price, stock.previous_close, stock.name)
+                    (ticker, stock.current_price, stock.high_today, stock.low_today, stock.open_price, stock.previous_close, stock.name, stock.currency)
                 )
             db.commit()
-            cursor.execute("Selec")
             cursor.close()
         return jsonify({
             "stocks": {
@@ -55,9 +54,46 @@ class StockAPI(MethodView):
                     "high_today": stock.high_today,
                     "low_today": stock.low_today,
                     "open_price": stock.open_price,
-                    "previous_close": stock.previous_close
-            } for ticker, stock in self.stock_tracker.stocks.items()}
-        })   
+                    "previous_close": stock.previous_close,
+                } for ticker, stock in self.stock_tracker.get_stocks().items()},
+            "currency": self.stock_tracker.get_currency()
+
+        }), 200  
 
 user_view = StockAPI.as_view('user_api')
 stock_bp.add_url_rule('/stocks', view_func=user_view, methods=['GET'])
+
+class StockExchangeCurrencyAPI(MethodView):
+    stock_tracker = StockTracker()
+    def post(self):
+        currency = ""
+        if self.stock_tracker.get_currency() == "CAD":
+            self.stock_tracker.exchange_currency("USD")
+            currency = "USD"
+
+        else:
+            self.stock_tracker.exchange_currency("CAD")
+            currency = "CAD"
+        db = get_db()         # connection
+        cursor = db.cursor()  # cursor object
+        cursor.execute("UPDATE stock SET currency = %s", (currency,))
+        db.commit()
+        cursor.close()
+
+        return jsonify({
+            "stocks": {
+                ticker: {
+                    "stock_key" : ticker,
+                    "name" :  stock.name,        
+                    "current_price": stock.current_price,
+                    "high_today": stock.high_today,
+                    "low_today": stock.low_today,
+                    "open_price": stock.open_price,
+                    "previous_close": stock.previous_close,
+                } for ticker, stock in self.stock_tracker.get_stocks().items()},
+            "message": f"Exchange rate updated to {currency}",
+            "currency": currency  ,
+
+        }), 200
+    
+stock_bp.add_url_rule('/stocks/exchange', view_func=StockExchangeCurrencyAPI.as_view('stock_exchange'), methods=['POST'])
