@@ -11,6 +11,7 @@ import Homepage from "./pages/homepage.tsx";
 import LoginPage from "./pages/loginpage.tsx";
 import AboutPage from "./pages/aboutpage.tsx";
 import SetupFundsPage from "./pages/setupfunds.tsx";
+import Userpage from "./pages/userpage.tsx";
 
 function App() {
   const router = createHashRouter(
@@ -20,6 +21,7 @@ function App() {
         <Route path="login" element={<LoginPage />} />
         <Route path="about" element={<AboutPage />} />
         <Route path="setup-funds" element={<SetupFundsPage />} />
+        <Route path="user" element={<Userpage />} />
       </Route>,
     ),
   );

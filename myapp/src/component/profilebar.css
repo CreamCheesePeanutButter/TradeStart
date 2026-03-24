@@ -1,0 +1,112 @@
+.profile-bar {
+  width: 250px;
+  height: calc(100vh - 56px); /* match navbar height */
+
+  position: fixed;
+  top: 56px; /* push below navbar */
+  left: 0;
+
+  background: #0d0d0d;
+  border-right: 1px solid #1e1e1e;
+
+  color: #f0f0f0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+  padding: 20px;
+}
+
+/* subtle green accent line like navbar */
+.profile-bar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(16, 124, 16, 0.4), transparent);
+}
+
+.profile-top {
+  text-align: left;
+}
+
+.username {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 25px;
+  letter-spacing: 0.12em;
+  color: #52B043;
+  margin-bottom: 8px;
+}
+
+.profile-top p {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: #aaa;
+  margin: 4px 0;
+}
+
+.subtext {
+  font-size: 11px;
+  color: #666;
+}
+
+.profile-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.profile-bottom button {
+  background: #161616;
+  border: 1px solid #2a2a2a;
+  color: #f0f0f0;
+
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+
+  padding: 10px;
+  cursor: pointer; 
+
+  transition: border-color 0.2s, box-shadow 0.2s, color 0.2s;
+}
+
+.profile-bottom button:hover {
+  border-color: rgba(84, 12, 1, 0.25);
+  box-shadow: 0 0 12px rgba(16, 124, 16, 0.25);
+  color: #2a2a2a;
+}
+
+.profile-bottom-logout {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+
+.profile-bottom button.active {
+  border-color: #107C10;
+  box-shadow: 0 0 12px rgba(16, 124, 16, 0.25);
+  color: #52B043;
+}
+
+
+.profile-bottom button.logout-button:hover {
+  background: rgba(224, 82, 82, 0.08);
+  border-color: #e05252;
+  box-shadow: 0 0 12px rgba(224, 82, 82, 0.25);
+  color: #e05252;
+}
+
+.profile-bottom button.logout-button {
+  background: rgba(224, 82, 82, 0.08);
+  border-color: #8e1515;
+  box-shadow: 0 0 12px rgba(224, 82, 82, 0.25);
+  color: #8e1515;
+}

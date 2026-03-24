@@ -1,0 +1,79 @@
+.portfolio-container {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  padding: 25px 32px 32px;
+  color: #f0f0f0;
+}
+
+/* Title */
+.portfolio-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 550;
+  font-size: 35px;
+  letter-spacing: 0.15em;
+  margin-bottom: 20px;
+  color: #52B043;
+}
+
+/* Table */
+.portfolio-table {
+  width: 150%;
+  border-collapse: collapse;
+  background: #0d0d0d;
+  border: 1px solid #1e1e1e;
+  margin: 0 auto;
+}
+
+
+/* Header */
+.portfolio-table th {
+  text-align: left;
+  padding: 12px;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  color: #52B043;
+  border-bottom: 1px solid #1e1e1e;
+}
+
+/* Rows */
+.portfolio-table td {
+  padding: 12px;
+  font-size: 14px;
+  border-bottom: 1px solid #1e1e1e;
+  color: #ccc;
+}
+
+/* Hover effect */
+.portfolio-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* Profit / Loss */
+.profit {
+  color: #52B043;
+}
+
+.loss {
+  color: #e05252;
+}
+
+/* Empty state */
+.portfolio-empty {
+  margin-left: 250px; /* keep space for sidebar */
+  height: calc(100vh - 56px); /* full screen minus navbar */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.1em;
+  color: #666;
+}
+
+.portfolio-table th,
+.portfolio-table td {
+  text-align: center;
+}
