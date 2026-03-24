@@ -10,7 +10,8 @@ const STEP = 50;
 function SetupFundsPage() {
   const navigate = useNavigate();
   const location = useLocation();
-  const userId: number = (location.state as { userId: number } | null)?.userId ?? 0;
+  const userId: number =
+    (location.state as { userId: number } | null)?.userId ?? 0;
 
   const [amount, setAmount] = useState(1000);
   const [isLoading, setIsLoading] = useState(false);
@@ -101,7 +102,11 @@ function SetupFundsPage() {
           {error && <div className="msg msg-error">{error}</div>}
 
           <button type="submit" className="submit-btn" disabled={isLoading}>
-            {isLoading ? <span className="spinner" /> : "CONFIRM & CONTINUE TO LOGIN"}
+            {isLoading ? (
+              <span className="spinner" />
+            ) : (
+              "CONFIRM & CONTINUE TO LOGIN"
+            )}
           </button>
         </form>
       </div>

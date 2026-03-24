@@ -5,6 +5,7 @@ export interface AuthUser {
   username: string;
   email: string;
   balance?: number;
+  token: string;
 }
 
 interface AuthContextType {
@@ -28,11 +29,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const login = (u: AuthUser) => {
     setUser(u);
     localStorage.setItem("ts_user", JSON.stringify(u));
+    localStorage.setItem("ts_token", u.token);
   };
 
   const logout = () => {
     setUser(null);
     localStorage.removeItem("ts_user");
+    localStorage.removeItem("ts_token");
   };
 
   return (

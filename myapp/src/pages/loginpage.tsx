@@ -11,7 +11,7 @@ function LoginPage() {
 
   const [isLogin, setIsLogin] = useState(true);
   const [identifier, setIdentifier] = useState(""); // email or username for login
-  const [email, setEmail] = useState("");            // email for signup
+  const [email, setEmail] = useState(""); // email for signup
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -37,6 +37,7 @@ function LoginPage() {
     const response = await fetch(`${API_URL}/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
+      //add token
       body: JSON.stringify({ identifier, password }),
     });
 
@@ -49,6 +50,8 @@ function LoginPage() {
         username: data.user.username,
         email: data.user.email,
         balance: data.user.available_funds,
+        //token is here
+        token: data.token,
       });
       navigate("/", { replace: true });
     } else if (response.status === 400) {
@@ -61,7 +64,14 @@ function LoginPage() {
   };
 
   const handleRegister = async () => {
-    if (!firstName || !lastName || !username || !email || !password || !confirmPassword) {
+    if (
+      !firstName ||
+      !lastName ||
+      !username ||
+      !email ||
+      !password ||
+      !confirmPassword
+    ) {
       setErrorMessage("All fields are required.");
       return;
     }
@@ -84,7 +94,13 @@ function LoginPage() {
     const response = await fetch(`${API_URL}/signup`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password, first_name: firstName, last_name: lastName, username }),
+      body: JSON.stringify({
+        email,
+        password,
+        first_name: firstName,
+        last_name: lastName,
+        username,
+      }),
     });
 
     const data = await response.json();
@@ -131,11 +147,16 @@ function LoginPage() {
       <div className="card">
         <div className="brand-row">
           <div className="xbox-icon">
-            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg
+              viewBox="0 0 40 40"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <circle cx="20" cy="20" r="19" stroke="#107C10" strokeWidth="2" />
               <path
                 d="M10 14c2-3 5-5 10-5s8 2 10 5c-2 3-5 8-10 11C15 22 12 17 10 14z"
-                fill="#107C10" opacity="0.3"
+                fill="#107C10"
+                opacity="0.3"
               />
               <path
                 d="M13 28c-2-2-3-5-3-8 0-2 0-4 1-6 1 2 4 7 9 10-2 2-5 4-7 4z"
@@ -210,13 +231,21 @@ function LoginPage() {
           )}
 
           <div className="field-group">
-            <label className="field-label">{isLogin ? "EMAIL OR USERNAME" : "EMAIL"}</label>
+            <label className="field-label">
+              {isLogin ? "EMAIL OR USERNAME" : "EMAIL"}
+            </label>
             <input
               className="text-input"
               type="text"
-              placeholder={isLogin ? "you@example.com or johndoe" : "you@example.com"}
+              placeholder={
+                isLogin ? "you@example.com or johndoe" : "you@example.com"
+              }
               value={isLogin ? identifier : email}
-              onChange={(e) => isLogin ? setIdentifier(e.target.value) : setEmail(e.target.value)}
+              onChange={(e) =>
+                isLogin
+                  ? setIdentifier(e.target.value)
+                  : setEmail(e.target.value)
+              }
               autoComplete={isLogin ? "username" : "email"}
             />
           </div>
@@ -239,13 +268,23 @@ function LoginPage() {
                 tabIndex={-1}
               >
                 {showPassword ? (
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
                     <path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94" />
                     <path d="M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19" />
                     <line x1="1" y1="1" x2="23" y2="23" />
                   </svg>
                 ) : (
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
                     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
                     <circle cx="12" cy="12" r="3" />
                   </svg>

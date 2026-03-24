@@ -80,10 +80,14 @@ export function Navbar() {
 
         <ul className="navbar-links">
           <li>
-            <Link to="/" className="nav-link">Home</Link>
+            <Link to="/" className="nav-link">
+              Home
+            </Link>
           </li>
           <li>
-            <Link to="/about" className="nav-link">About</Link>
+            <Link to="/about" className="nav-link">
+              About
+            </Link>
           </li>
           <li>
             {user ? (
@@ -95,7 +99,13 @@ export function Navbar() {
                   <span className="nav-user-dot" />
                   {user.username}
                   <svg className="nav-chevron" viewBox="0 0 10 6" fill="none">
-                    <path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    <path
+                      d="M1 1l4 4 4-4"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
                   </svg>
                 </button>
                 {menuOpen && (
@@ -103,14 +113,19 @@ export function Navbar() {
                     <button className="nav-dd-item" onClick={openFunds}>
                       Add Funds
                     </button>
-                    <button className="nav-dd-item nav-dd-logout" onClick={handleLogout}>
+                    <button
+                      className="nav-dd-item nav-dd-logout"
+                      onClick={handleLogout}
+                    >
                       Logout
                     </button>
                   </div>
                 )}
               </div>
             ) : (
-              <Link to="/login" className="nav-link nav-link-cta">Login</Link>
+              <Link to="/login" className="nav-link nav-link-cta">
+                Login
+              </Link>
             )}
           </li>
         </ul>
@@ -119,11 +134,18 @@ export function Navbar() {
       {fundsOpen && (
         <div className="nav-modal-backdrop" onClick={() => setFundsOpen(false)}>
           <div className="nav-modal" onClick={(e) => e.stopPropagation()}>
-            <button className="nav-modal-close" onClick={() => setFundsOpen(false)}>✕</button>
+            <button
+              className="nav-modal-close"
+              onClick={() => setFundsOpen(false)}
+            >
+              ✕
+            </button>
             <h3 className="nav-modal-title">ADD FUNDS</h3>
 
             <form onSubmit={handleAddFunds} className="nav-modal-form">
-              <div className="nav-modal-amount">${fundsAmount.toLocaleString()}</div>
+              <div className="nav-modal-amount">
+                ${fundsAmount.toLocaleString()}
+              </div>
 
               <div className="sf-slider-wrap">
                 <div className="sf-track">
@@ -154,19 +176,34 @@ export function Navbar() {
                   max={FUNDS_MAX}
                   value={fundsAmount}
                   onChange={(e) =>
-                    setFundsAmount(Math.min(FUNDS_MAX, Math.max(0, Number(e.target.value) || 0)))
+                    setFundsAmount(
+                      Math.min(
+                        FUNDS_MAX,
+                        Math.max(0, Number(e.target.value) || 0),
+                      ),
+                    )
                   }
                 />
               </div>
 
               {fundsMsg && (
-                <div className={`nav-modal-msg ${fundsMsg.includes("success") ? "nav-modal-msg-ok" : "nav-modal-msg-err"}`}>
+                <div
+                  className={`nav-modal-msg ${fundsMsg.includes("success") ? "nav-modal-msg-ok" : "nav-modal-msg-err"}`}
+                >
                   {fundsMsg}
                 </div>
               )}
 
-              <button type="submit" className="nav-modal-btn" disabled={fundsLoading}>
-                {fundsLoading ? <span className="nav-modal-spinner" /> : "ADD FUNDS"}
+              <button
+                type="submit"
+                className="nav-modal-btn"
+                disabled={fundsLoading}
+              >
+                {fundsLoading ? (
+                  <span className="nav-modal-spinner" />
+                ) : (
+                  "ADD FUNDS"
+                )}
               </button>
             </form>
           </div>
