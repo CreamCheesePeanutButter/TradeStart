@@ -10,7 +10,6 @@ class Stock:
     _ticker = ""
     name = ""
     currency = "USD"
-
     
     def __init__(self, ticker):
         self._ticker = ticker
