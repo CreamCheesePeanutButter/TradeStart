@@ -238,20 +238,7 @@ function SearchBar() {
             >
               ✕
             </button>
-            <LineChart
-              width={400}
-              height={100}
-              series={[
-                {
-                  data: [1, 2, 3, 4, 5],
-                },
-              ]}
-              xAxis={[
-                {
-                  data: [1, 2, 3, 4, 5],
-                },
-              ]}
-            />
+
             <div className="sb-modal-header">
               <span className="sb-modal-ticker">{selected.stock_key}</span>
               <span className="sb-modal-name">{selected.name}</span>
