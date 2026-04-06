@@ -32,8 +32,7 @@ class SignupAPI(MethodView):
 
         # Insert new user
         insert_query = """
-        INSERT INTO user (email, password, first_name, last_name, username)
-        VALUES (%s, %s, %s, %s, %s)
+        CALL AddNewUser(%s, %s, %s, %s, %s);
         """
         cursor.execute(insert_query, (email, password, first_name, last_name, username))
         db.commit()

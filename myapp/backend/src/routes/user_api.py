@@ -94,16 +94,7 @@ def update_stocks():
         for ticker, stock in _stockTracker.get_stocks().items():
             cursor.execute(
                 """
-                INSERT INTO stock (stock_key, current_price, high_price, low_price, open_price, previous_close, name, currency)
-                VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
-                ON DUPLICATE KEY UPDATE
-                    current_price = VALUES(current_price),
-                    high_price = VALUES(high_price),
-                    low_price = VALUES(low_price),
-                    open_price = VALUES(open_price),
-                    previous_close = VALUES(previous_close),
-                    name = VALUES(name),
-                    currency = VALUES(currency)
+                CALL UpdateStocks(%s, %s, %s, %s, %s, %s, %s, %s)
                 """,
                 (ticker, stock.current_price, stock.high_today, stock.low_today, stock.open_price, stock.previous_close, stock.name, stock.currency)
             )
@@ -233,18 +224,7 @@ class PortfolioAPI(MethodView):
 
         cursor.execute(
             """
-            SELECT
-                t.stock_symbol,
-                s.name,
-                SUM(t.number_of_shares) AS total_shares,
-                SUM(CASE WHEN t.transaction_type = 'BUY' THEN t.number_of_shares * t.price ELSE 0 END) /
-                    NULLIF(SUM(CASE WHEN t.transaction_type = 'BUY' THEN t.number_of_shares ELSE 0 END), 0) AS avg_price,
-                s.current_price
-            FROM TradeTable t
-            LEFT JOIN stock s ON t.stock_symbol = s.stock_key
-            WHERE t.userID = %s
-            GROUP BY t.stock_symbol, s.name, s.current_price
-            HAVING total_shares > 0
+            CALL GetPortfolio(%s)
             """,
             (user_id,)
         )
@@ -282,10 +262,7 @@ class TradeHistoryAPI(MethodView):
 
         cursor.execute(
             """
-            SELECT stock_symbol, number_of_shares, price, transaction_date, transaction_type
-            FROM TradeTable
-            WHERE userID = %s
-            ORDER BY transaction_date DESC
+            CALL GetTradeHistory(%s)
             """,
             (user_id,)
         )

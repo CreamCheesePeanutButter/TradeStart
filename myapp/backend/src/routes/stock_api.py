@@ -30,16 +30,7 @@ class StockAPI(MethodView):
             for ticker, stock in _tracker.get_stocks().items():
                 cursor.execute(
                     """
-                    INSERT INTO stock (stock_key, current_price, high_price, low_price, open_price, previous_close, name, currency)
-                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
-                    ON DUPLICATE KEY UPDATE
-                        current_price = VALUES(current_price),
-                        high_price = VALUES(high_price),
-                        low_price = VALUES(low_price),
-                        open_price = VALUES(open_price),
-                        previous_close = VALUES(previous_close),
-                        name = VALUES(name),
-                        currency = VALUES(currency)
+                    CALL UpdateStocks(%s, %s, %s, %s, %s, %s, %s, %s)
                     """,
                     (ticker, stock.current_price, stock.high_today, stock.low_today, stock.open_price, stock.previous_close, stock.name, stock.currency)
                 )

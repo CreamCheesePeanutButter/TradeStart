@@ -23,22 +23,18 @@ class LoginAPI(MethodView):
         cursor = db.cursor(dictionary=True)
 
         query = """
-        SELECT *
-        FROM user
-        WHERE password = %s
-        AND (email = %s OR username = %s)
+        CALL ValidateLogin(%s, %s);
         """
 
-        cursor.execute(query, (password, identifier, identifier))
+        cursor.execute(query, (password, identifier))
         result = cursor.fetchone()
         print(result)
 
         cursor.close()
 
         if result:
-            user = User(result["userID"], result["last_name"], result["first_name"], result["invested_funds"], result["available_funds"])
-            session["test"] = user.to_dict()
-
+            # user = User(result["userID"], result["last_name"], result["first_name"], result["invested_funds"], result["available_funds"])
+            # session["test"] = user.to_dict()
             return jsonify({
                 "user": {
                     "userID": result["userID"],

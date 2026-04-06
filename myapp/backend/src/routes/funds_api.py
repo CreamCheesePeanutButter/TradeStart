@@ -17,7 +17,7 @@ class AddFundsAPI(MethodView):
         db = get_db()
         cursor = db.cursor()
 
-        query = "UPDATE user SET available_funds = available_funds + %s WHERE userID = %s"
+        query = "CALL AddFunds(%s, %s)"
         cursor.execute(query, (amount, user_id))
         db.commit()
 

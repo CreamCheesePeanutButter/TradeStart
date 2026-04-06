@@ -5,7 +5,7 @@ class Stock:
     current_price = 0
     high_today = 0
     low_today = 0
-    open_price = 0
+    open_price = 0  
     previous_close = 0
     _ticker = ""
     name = ""
@@ -27,11 +27,11 @@ class Stock:
         url = f"https://finnhub.io/api/v1/quote?symbol={self._ticker}&token={API_KEY}"
         response = requests.get(url)
         data = response.json()
-        self.current_price = data["c"]
-        self.high_today = data["h"]
-        self.low_today = data["l"]
-        self.open_price = data["o"]
-        self.previous_close = data["pc"]
+        self.current_price = round(data["c"], 2)
+        self.high_today = round(data["h"], 2)
+        self.low_today = round(data["l"], 2)
+        self.open_price = round(data["o"], 2)
+        self.previous_close = round(data["pc"], 2)
         self.update_name()
         if self.currency != "USD":
             self.exchange_to_currency()

@@ -26,7 +26,6 @@ app.register_blueprint(signup_bp)
 app.register_blueprint(funds_bp)
 app.register_blueprint(user_bp)
 
-app.teardown_appcontext(close_db)
 
 if __name__ == "__main__":
     

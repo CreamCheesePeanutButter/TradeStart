@@ -38,6 +38,7 @@ class User:
         pay_amount = num_stock * price
 
         if self._free_fund < pay_amount:
+            print("Insufficient funds to complete the purchase.")
             return False
 
         self._free_fund -= float(pay_amount)
@@ -50,19 +51,14 @@ class User:
 
             cursor.execute(
                 """
-                UPDATE user
-                SET available_funds = %s,
-                    invested_funds = %s
-                WHERE userID = %s
+                CALL UpdateUserFunds(%s, %s, %s)
                 """,
                 (self._free_fund, self._invested_fund, self._id)
             )
 
             cursor.execute(
                 """
-                INSERT INTO TradeTable
-                (userID, stock_symbol, number_of_shares, price, transaction_date, transaction_type)
-                VALUES (%s, %s, %s, %s, %s, %s)
+                CALL ExecuteTrade(%s, %s, %s, %s, %s, %s)
                 """,
                 (
                     self._id,
@@ -113,7 +109,7 @@ class User:
         self._invested_fund -= float(receive_amount)
 
         try:
-
+            
             cursor.execute(
                 """
                 UPDATE user
@@ -126,9 +122,7 @@ class User:
 
             cursor.execute(
                 """
-                INSERT INTO TradeTable
-                (userID, stock_symbol, number_of_shares, price, transaction_date, transaction_type)
-                VALUES (%s, %s, %s, %s, %s, %s)
+                CALL ExecuteTrade(%s, %s, %s, %s, %s, %s)
                 """,
                 (
                     self._id,
