@@ -45,6 +45,10 @@ function LoginPage() {
     setIsLoading(false);
 
     if (response.ok) {
+      if (data.user.admin_access) {
+        navigate("/admin", { replace: true });
+        return;
+      }
       login({
         id: data.user.userID,
         username: data.user.username,

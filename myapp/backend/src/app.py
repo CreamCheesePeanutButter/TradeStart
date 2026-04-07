@@ -7,6 +7,7 @@ from routes.signup_api import signup_bp
 from const import const
 from routes.funds_api import funds_bp
 from routes.user_api import user_bp
+from routes.admin_api import admin_bp
 
 
 app = Flask(__name__)
@@ -25,6 +26,7 @@ app.register_blueprint(stock_bp)
 app.register_blueprint(signup_bp)
 app.register_blueprint(funds_bp)
 app.register_blueprint(user_bp)
+app.register_blueprint(admin_bp)
 
 
 if __name__ == "__main__":

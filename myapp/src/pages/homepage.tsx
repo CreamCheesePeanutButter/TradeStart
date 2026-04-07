@@ -35,7 +35,9 @@ const Homepage = () => {
       })
       .then((res) => res.json())
       .then((data) => setStocks(data.stocks))
-      .catch((err) => setError(err instanceof Error ? err.message : "Unknown error"))
+      .catch((err) =>
+        setError(err instanceof Error ? err.message : "Unknown error"),
+      )
       .finally(() => setExchanging(false));
   };
 
@@ -69,17 +71,23 @@ const Homepage = () => {
         <div className="hw-table-wrap">
           <div className="hw-currency-bar">
             <span className="hw-currency-label">Currency</span>
-            <div className={`hw-currency-toggle${exchanging ? " hw-toggle-busy" : ""}`}>
+            <div
+              className={`hw-currency-toggle${exchanging ? " hw-toggle-busy" : ""}`}
+            >
               <button
                 className={`hw-toggle-opt${currency === "USD" ? " hw-toggle-active" : ""}`}
                 onClick={() => currency !== "USD" && handleExchange()}
                 disabled={exchanging}
-              >USD</button>
+              >
+                USD
+              </button>
               <button
                 className={`hw-toggle-opt${currency === "CAD" ? " hw-toggle-active" : ""}`}
                 onClick={() => currency !== "CAD" && handleExchange()}
                 disabled={exchanging}
-              >CAD</button>
+              >
+                CAD
+              </button>
             </div>
           </div>
           <table className="hw-table">

@@ -11,7 +11,6 @@ class LoginAPI(MethodView):
 
     def post(self):
         global user_data
-
         data = request.get_json()
         password = data.get('password')
         identifier = data.get('identifier')  # email or username
@@ -30,17 +29,18 @@ class LoginAPI(MethodView):
         result = cursor.fetchone()
         print(result)
 
+
         cursor.close()
 
         if result:
-            # user = User(result["userID"], result["last_name"], result["first_name"], result["invested_funds"], result["available_funds"])
-            # session["test"] = user.to_dict()
+            
             return jsonify({
                 "user": {
                     "userID": result["userID"],
                     "username": result["username"],
                     "email": result["email"],
-                    "available_funds": result["available_funds"]
+                    "available_funds": result["available_funds"],
+                    "admin_access": result["admin_access"]
                 },
                 "token": result["userID"]
             }), 200

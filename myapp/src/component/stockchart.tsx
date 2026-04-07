@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { LineChart } from "@mui/x-charts/LineChart";
+import { colors } from "@mui/material";
 
 const API_URL = import.meta.env.VITE_API_URL ?? "http://127.0.0.1:5000";
 
@@ -57,38 +58,41 @@ export default function StockChart({ ticker }: Props) {
   if (dates.length === 0) return <p>No history data</p>;
 
   return (
-    <LineChart
-      height={250}
-      // The 'title' prop works, but we must style the SVG text element
-      title="Stock value in 1 month"
-      series={[
-        { label: "Open", data: openPrices },
-        { label: "Close", data: closePrices },
-      ]}
-      xAxis={[{ scaleType: "point", data: dates }]}
-      margin={{ top: 50, bottom: 50, left: 60, right: 30 }} // Adds space for labels
-      sx={{
-        // 1. Force ALL text in the chart to be white (Titles, Legend, Axes)
-        "& text": {
-          fill: "white !important",
-        },
-        // 2. Make the Legend labels ("Open" & "Close") white
-        "& .MuiChartsLegend-label": {
-          fill: "white !important",
-        },
-        // 3. Make all Axis lines and small tick marks white
-        "& .MuiChartsAxis-line, & .MuiChartsAxis-tick": {
-          stroke: "white !important",
-        },
-        // 4. Make the Axis numbers/dates white
-        "& .MuiChartsAxis-tickLabel": {
-          fill: "white !important",
-        },
-        // 5. Optional: Make the grid lines a subtle white (if you use them)
-        "& .MuiChartsGrid-line": {
-          stroke: "rgba(255, 255, 255, 0.1) !important",
-        },
-      }}
-    />
+    <div>
+      <h1>Stock value in 1 month</h1>
+      <LineChart
+        height={250}
+        // The 'title' prop works, but we must style the SVG text element
+        title="Stock value in 1 month"
+        series={[
+          { label: "Open", data: openPrices },
+          { label: "Close", data: closePrices },
+        ]}
+        xAxis={[{ scaleType: "point", data: dates }]}
+        margin={{ top: 50, bottom: 50, left: 60, right: 30 }} // Adds space for labels
+        sx={{
+          // 1. Force ALL text in the chart to be white (Titles, Legend, Axes)
+          "& text": {
+            fill: "white !important",
+          },
+          // 2. Make the Legend labels ("Open" & "Close") white
+          "& .MuiChartsLegend-label": {
+            fill: "white !important",
+          },
+          // 3. Make all Axis lines and small tick marks white
+          "& .MuiChartsAxis-line, & .MuiChartsAxis-tick": {
+            stroke: "white !important",
+          },
+          // 4. Make the Axis numbers/dates white
+          "& .MuiChartsAxis-tickLabel": {
+            fill: "white !important",
+          },
+          // 5. Optional: Make the grid lines a subtle white (if you use them)
+          "& .MuiChartsGrid-line": {
+            stroke: "rgba(255, 255, 255, 0.1) !important",
+          },
+        }}
+      />
+    </div>
   );
 }
